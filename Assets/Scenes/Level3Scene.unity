@@ -845,7 +845,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99535545b427d845859693d1964dfa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundChecker: {fileID: 244934197}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
   runSpeed: 8
+  sprintSpeed: 12
+  crouchSpeed: 4
+  airSpeed: 0.3
+  normalGravity: -13
+  jumpHeight: 5
+  standHeight: 0
+  crouchHeight: 0.5
 --- !u!1 &1921477788
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +869,7 @@ GameObject:
   - component: {fileID: 1921477792}
   - component: {fileID: 1921477791}
   - component: {fileID: 1921477790}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
