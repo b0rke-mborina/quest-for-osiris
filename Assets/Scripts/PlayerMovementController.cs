@@ -11,23 +11,35 @@ public class PlayerMovementController : MonoBehaviour
     Vector3 move;
     Vector3 input;
     Vector3 verticalVelocity;
+	Vector3 forwardDirection;
 
     float speed;
     public float runSpeed;
     public float sprintSpeed;
     public float crouchSpeed;
     public float airSpeed;
+    public float slideSpeedIncrease;
+    public float slideSpeedDecrease;
+
     int numberOfJumpCharges;
-    bool isGrounded;
+    
+	bool isGrounded;
     bool isCrouching;
     bool isSprinting;
-    float gravity;
+	bool isSliding;
+    
+	float gravity;
     public float normalGravity;
-    public float jumpHeight;
+    
+	public float jumpHeight;
     public float standHeight;
     public float crouchHeight = 0.5f;
-    Vector3 standCenter = new Vector3(0, 0, 0);
+    
+	Vector3 standCenter = new Vector3(0, 0, 0);
     Vector3 crouchCenter = new Vector3(0, 0.5f, 0);
+
+    float slideTimer;
+    public float maxSlideTimer;
 
 
     // Start is called before the first frame update
@@ -41,9 +53,26 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         HandleInput();
-        if (isGrounded) GroundedMovement();
-        else AirMovement();
-        GroundedMovement();
+
+        if (isGrounded && !isSliding)
+        {
+            GroundedMovement();
+        }
+        else if (!isGrounded)
+        {
+            AirMovement();
+        }
+        else if (isSliding)
+        {
+            SlideMovement();
+            DecreaseSpeed(slideSpeedDecrease);
+            slideTimer -= 1f * Time.deltaTime;
+            if (slideTimer < 0)
+            {
+                isSliding = false;
+            }
+        }
+
         CheckGround();
         controller.Move(move * Time.deltaTime);
         ApplyGravity();
@@ -98,6 +127,12 @@ public class PlayerMovementController : MonoBehaviour
         move = Vector3.ClampMagnitude(move, speed);
     }
 
+    void SlideMovement()
+    {
+        move += forwardDirection;
+        move = Vector3.ClampMagnitude(move, speed);
+    }
+
     void Jump()
     {
         verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * normalGravity);
@@ -110,6 +145,27 @@ public class PlayerMovementController : MonoBehaviour
         controller.center = crouchCenter;
         transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
         isCrouching = true;
+
+        if (speed >= runSpeed)
+        {
+            isSliding = true;
+            forwardDirection = transform.forward;
+            if (isGrounded)
+            {
+                IncreaseSpeed(slideSpeedIncrease);
+            }
+            slideTimer = maxSlideTimer;
+        }
+    }
+
+    void IncreaseSpeed(float speedIncrease)
+    {
+        speed += speedIncrease;
+    }
+
+    void DecreaseSpeed(float speedDecrease)
+    {
+        speed -= speedDecrease * Time.deltaTime;
     }
 
     void Stand()
@@ -118,6 +174,7 @@ public class PlayerMovementController : MonoBehaviour
         controller.center = standCenter;
         transform.localScale = new Vector3(transform.localScale.x, standHeight, transform.localScale.z);
         isCrouching = false;
+        isSliding = false;
     }
 
     void CheckGround()
