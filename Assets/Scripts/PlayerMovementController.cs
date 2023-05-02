@@ -4,48 +4,67 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    // controller and variables for checking
     CharacterController controller;
     public Transform groundChecker;
     public LayerMask groundMask;
     public LayerMask wallMask;
 
+    // movement main variables
     Vector3 move;
     Vector3 input;
     Vector3 verticalVelocity;
 	Vector3 forwardDirection;
 
+    // speeds
     float speed;
     public float runSpeed;
     public float sprintSpeed;
     public float crouchSpeed;
     public float airSpeed;
+    public float climbSpeed;
+
+    // speed changes
     public float slideSpeedIncrease;
     public float slideSpeedDecrease;
     public float wallrunSpeedIncrease;
     public float wallrunSpeedDecrease;
 
+    // stores available jumps
     int numberOfJumpCharges;
     
+    // movement states
 	bool isGrounded;
     bool isCrouching;
     bool isSprinting;
 	bool isSliding;
     bool isWallrunning;
+    bool isWalljumping;
+    bool isClimbing;
 
+    // gravities
     float gravity;
     public float normalGravity;
     public float wallrunGravity;
 
+    // player heights
     public float jumpHeight;
     public float standHeight;
     public float crouchHeight = 0.5f;
-    
-	Vector3 standCenter = new Vector3(0, 0, 0);
+
+    // player centers
+    Vector3 standCenter = new Vector3(0, 0, 0);
     Vector3 crouchCenter = new Vector3(0, 0.5f, 0);
 
+    // timers
     float slideTimer;
     public float maxSlideTimer;
+    float walljumpTimer;
+    public float maxWalljumpTimer;
+    float climbTimer;
+    public float maxClimbTimer;
 
+    // wallrunning related variables
     bool hasWallrun;
     bool onLeftWall;
     bool onRightWall;
@@ -54,13 +73,21 @@ public class PlayerMovementController : MonoBehaviour
     Vector3 wallNormal;
     Vector3 lastWallNormal;
 
-    public Camera playerCamera;
+    // climbing related variables
+    bool canClimb;
+    bool hasClimbed;
+    RaycastHit wallHit;
 
+    // camera related variables
+    public Camera playerCamera;
     float normalFOV;
     public float specialFOV;
     public float cameraChangeTime;
     public float wallrunTilt;
     public float tilt;
+
+
+    // MAIN FUNCTIONS (START and UPDATE)
 
     // Start is called before the first frame update
     void Start()
@@ -75,12 +102,13 @@ public class PlayerMovementController : MonoBehaviour
     {
         HandleInput();
         CheckWallrun();
+        CheckClimbing();
 
         if (isGrounded && !isSliding)
         {
             GroundedMovement();
         }
-        else if (!isGrounded && !isWallrunning)
+        else if (!isGrounded && !isWallrunning && !isClimbing)
         {
             AirMovement();
         }
@@ -99,12 +127,25 @@ public class PlayerMovementController : MonoBehaviour
             WallrunMovement();
             DecreaseSpeed(wallrunSpeedDecrease);
         }
+        else if (isClimbing)
+        {
+            ClimbMovement();
+            climbTimer -= 1f * Time.deltaTime;
+            if (climbTimer < 0)
+            {
+                isClimbing = false;
+                hasClimbed = true;
+            }
+        }
 
         CheckGround();
         controller.Move(move * Time.deltaTime);
         ApplyGravity();
         CameraEffects();
     }
+
+
+    // INPUT
 
     void HandleInput()
     {
@@ -136,6 +177,9 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+
+    // MOVEMENTS
+
     void GroundedMovement()
     {
         speed = isSprinting
@@ -152,11 +196,21 @@ public class PlayerMovementController : MonoBehaviour
     {
         move.x += input.x * airSpeed;
         move.z += input.z * airSpeed;
+        if (isWalljumping)
+        {
+            move += Vector3.zero * airSpeed;
+            walljumpTimer -= 1f * Time.deltaTime;
+            if (walljumpTimer <= 0f)
+            {
+                isWalljumping = false;
+            }
+        }
         move = Vector3.ClampMagnitude(move, speed);
     }
 
     void SlideMovement()
     {
+        forwardDirection = Vector3.zero;
         move += forwardDirection;
         move = Vector3.ClampMagnitude(move, speed);
     }
@@ -175,6 +229,22 @@ public class PlayerMovementController : MonoBehaviour
         move = Vector3.ClampMagnitude(move, speed);
     }
 
+    void ClimbMovement()
+    {
+        forwardDirection = Vector3.up;
+        move.x += input.x * airSpeed;
+        move.z += input.z * airSpeed;
+
+        verticalVelocity += forwardDirection;
+        speed = climbSpeed;
+
+        move = Vector3.ClampMagnitude(move, speed);
+        verticalVelocity = Vector3.ClampMagnitude(verticalVelocity, speed);
+    }
+
+
+    // ACTIONS
+    
     void Jump()
     {
         if (!isGrounded && !isWallrunning) numberOfJumpCharges -= 1;
@@ -183,6 +253,9 @@ public class PlayerMovementController : MonoBehaviour
             StopWallrunning();
             IncreaseSpeed(wallrunSpeedIncrease);
         }
+
+        hasClimbed = false;
+        climbTimer = maxClimbTimer;
         verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * normalGravity);
     }
 
@@ -200,6 +273,9 @@ public class PlayerMovementController : MonoBehaviour
     {
         isWallrunning = false;
         lastWallNormal = wallNormal;
+        forwardDirection = wallNormal;
+        isWalljumping = true;
+        walljumpTimer = maxWalljumpTimer;
     }
 
     void Crouch()
@@ -209,7 +285,7 @@ public class PlayerMovementController : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
         isCrouching = true;
 
-        if (speed >= runSpeed)
+        if (speed > runSpeed)
         {
             isSliding = true;
             forwardDirection = transform.forward;
@@ -220,6 +296,17 @@ public class PlayerMovementController : MonoBehaviour
             slideTimer = maxSlideTimer;
         }
     }
+    void Stand()
+    {
+        controller.height = standHeight * 2;
+        controller.center = standCenter;
+        transform.localScale = new Vector3(transform.localScale.x, standHeight, transform.localScale.z);
+        isCrouching = false;
+        isSliding = false;
+    }
+
+
+    // SPEED
 
     void IncreaseSpeed(float speedIncrease)
     {
@@ -230,15 +317,9 @@ public class PlayerMovementController : MonoBehaviour
     {
         speed -= speedDecrease * Time.deltaTime;
     }
+    
 
-    void Stand()
-    {
-        controller.height = standHeight * 2;
-        controller.center = standCenter;
-        transform.localScale = new Vector3(transform.localScale.x, standHeight, transform.localScale.z);
-        isCrouching = false;
-        isSliding = false;
-    }
+    // CHECKS
 
     void CheckGround()
     {
@@ -247,6 +328,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             numberOfJumpCharges = 1;
             hasWallrun = false;
+            hasClimbed = false;
+            climbTimer = maxClimbTimer;
         }
     }
 
@@ -255,7 +338,8 @@ public class PlayerMovementController : MonoBehaviour
         onLeftWall = Physics.Raycast(transform.position, -transform.right, out leftWallHit, 0.7f, wallMask);
         onRightWall = Physics.Raycast(transform.position, transform.right, out rightWallHit, 0.7f, wallMask);
 
-        if ((onRightWall || onLeftWall) && !isWallrunning) TestWallrun();
+        if (isGrounded) StopWallrunning();
+        else if ((onRightWall || onLeftWall) && !isWallrunning) TestWallrun();
         else if ((!onRightWall && !onLeftWall) && isWallrunning) StopWallrunning();
     }
 
@@ -274,12 +358,30 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    void CheckClimbing()
+    {
+        canClimb = Physics.Raycast(transform.position, transform.forward, out wallHit, 0.7f, wallMask);
+        float wallAngle = Vector3.Angle(-wallHit.normal, transform.forward);
+        if (wallAngle < 15 && !hasClimbed && canClimb) isClimbing = true;
+        else isClimbing = false;
+    }
+
+    
+    // GRAVITY
+
     void ApplyGravity()
     {
-        gravity = isWallrunning ? wallrunGravity : normalGravity;
+        gravity = isWallrunning
+            ? wallrunGravity
+            : isClimbing
+                ? 0f
+                : normalGravity;
         verticalVelocity.y += gravity * Time.deltaTime;
         controller.Move(verticalVelocity * Time.deltaTime);
     }
+
+
+    // CAMERA
 
     void CameraEffects()
     {
