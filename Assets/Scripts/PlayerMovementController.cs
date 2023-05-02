@@ -7,6 +7,7 @@ public class PlayerMovementController : MonoBehaviour
     CharacterController controller;
     public Transform groundChecker;
     public LayerMask groundMask;
+    public LayerMask wallMask;
 
     Vector3 move;
     Vector3 input;
@@ -20,6 +21,8 @@ public class PlayerMovementController : MonoBehaviour
     public float airSpeed;
     public float slideSpeedIncrease;
     public float slideSpeedDecrease;
+    public float wallrunSpeedIncrease;
+    public float wallrunSpeedDecrease;
 
     int numberOfJumpCharges;
     
@@ -27,11 +30,13 @@ public class PlayerMovementController : MonoBehaviour
     bool isCrouching;
     bool isSprinting;
 	bool isSliding;
-    
-	float gravity;
+    bool isWallrunning;
+
+    float gravity;
     public float normalGravity;
-    
-	public float jumpHeight;
+    public float wallrunGravity;
+
+    public float jumpHeight;
     public float standHeight;
     public float crouchHeight = 0.5f;
     
@@ -41,24 +46,41 @@ public class PlayerMovementController : MonoBehaviour
     float slideTimer;
     public float maxSlideTimer;
 
+    bool hasWallrun;
+    bool onLeftWall;
+    bool onRightWall;
+    RaycastHit leftWallHit;
+    RaycastHit rightWallHit;
+    Vector3 wallNormal;
+    Vector3 lastWallNormal;
+
+    public Camera playerCamera;
+
+    float normalFOV;
+    public float specialFOV;
+    public float cameraChangeTime;
+    public float wallrunTilt;
+    public float tilt;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         standHeight = transform.localScale.y;
+        normalFOV = playerCamera.fieldOfView;
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleInput();
+        CheckWallrun();
 
         if (isGrounded && !isSliding)
         {
             GroundedMovement();
         }
-        else if (!isGrounded)
+        else if (!isGrounded && !isWallrunning)
         {
             AirMovement();
         }
@@ -72,10 +94,16 @@ public class PlayerMovementController : MonoBehaviour
                 isSliding = false;
             }
         }
+        else if (isWallrunning)
+        {
+            WallrunMovement();
+            DecreaseSpeed(wallrunSpeedDecrease);
+        }
 
         CheckGround();
         controller.Move(move * Time.deltaTime);
         ApplyGravity();
+        CameraEffects();
     }
 
     void HandleInput()
@@ -133,10 +161,45 @@ public class PlayerMovementController : MonoBehaviour
         move = Vector3.ClampMagnitude(move, speed);
     }
 
+    void WallrunMovement()
+    {
+        if (input.z > (forwardDirection.z - 10f) && input.z < (forwardDirection.z + 10f)) move += forwardDirection;
+        else if (input.z < (forwardDirection.z - 10f) && input.z > (forwardDirection.z + 10f))
+        {
+            move.x = 0f;
+            move.z = 0f;
+            StopWallrunning();
+        }
+
+        move.x += input.x * airSpeed;
+        move = Vector3.ClampMagnitude(move, speed);
+    }
+
     void Jump()
     {
+        if (!isGrounded && !isWallrunning) numberOfJumpCharges -= 1;
+        else if (isWallrunning)
+        {
+            StopWallrunning();
+            IncreaseSpeed(wallrunSpeedIncrease);
+        }
         verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * normalGravity);
-        numberOfJumpCharges -= 1;
+    }
+
+    void Wallrun()
+    {
+        isWallrunning = true;
+        numberOfJumpCharges = 1;
+        IncreaseSpeed(wallrunSpeedIncrease);
+        verticalVelocity = new Vector3(0f, 0f, 0f);
+        forwardDirection = Vector3.Cross(wallNormal, Vector3.up);
+        if (Vector3.Dot(forwardDirection, transform.forward) < 0) forwardDirection = -forwardDirection;
+    }
+
+    void StopWallrunning()
+    {
+        isWallrunning = false;
+        lastWallNormal = wallNormal;
     }
 
     void Crouch()
@@ -183,13 +246,55 @@ public class PlayerMovementController : MonoBehaviour
         if (isGrounded)
         {
             numberOfJumpCharges = 1;
+            hasWallrun = false;
+        }
+    }
+
+    void CheckWallrun()
+    {
+        onLeftWall = Physics.Raycast(transform.position, -transform.right, out leftWallHit, 0.7f, wallMask);
+        onRightWall = Physics.Raycast(transform.position, transform.right, out rightWallHit, 0.7f, wallMask);
+
+        if ((onRightWall || onLeftWall) && !isWallrunning) TestWallrun();
+        else if ((!onRightWall && !onLeftWall) && isWallrunning) StopWallrunning();
+    }
+
+    void TestWallrun()
+    {
+        wallNormal = onRightWall ? rightWallHit.normal : leftWallHit.normal;
+        if (hasWallrun)
+        {
+            float wallAngle = Vector3.Angle(wallNormal, lastWallNormal);
+            if (wallAngle > 15) Wallrun();
+        }
+        else
+        {
+            Wallrun();
+            hasWallrun = true;
         }
     }
 
     void ApplyGravity()
     {
-        gravity = normalGravity;
+        gravity = isWallrunning ? wallrunGravity : normalGravity;
         verticalVelocity.y += gravity * Time.deltaTime;
         controller.Move(verticalVelocity * Time.deltaTime);
+    }
+
+    void CameraEffects()
+    {
+        float fov = isWallrunning
+            ? specialFOV
+            : isSliding
+                ? specialFOV
+                : normalFOV;
+        playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, cameraChangeTime * Time.deltaTime);
+
+        if (isWallrunning)
+        {
+            if (onRightWall) tilt = Mathf.Lerp(tilt, wallrunTilt, cameraChangeTime * Time.deltaTime);
+            if (onLeftWall) tilt = Mathf.Lerp(tilt, -wallrunTilt, cameraChangeTime * Time.deltaTime);
+        }
+        else tilt = Mathf.Lerp(tilt, 0f, cameraChangeTime * Time.deltaTime);
     }
 }

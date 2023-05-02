@@ -15,11 +15,15 @@ public class PlayerCameraController : MonoBehaviour
     float rotX = 0f;
     float rotY = 0f;
 
+    PlayerMovementController playerMovementController;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        playerMovementController = GetComponent<PlayerMovementController>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,6 @@ public class PlayerCameraController : MonoBehaviour
         rotX = Mathf.Clamp(rotX, minX, maxX);
 
         transform.localEulerAngles = new Vector3(0, rotY, 0);
-        camera.transform.localEulerAngles = new Vector3(-rotX, 0, 0);
+        camera.transform.localEulerAngles = new Vector3(-rotX, 0, playerMovementController.tilt);
     }
 }

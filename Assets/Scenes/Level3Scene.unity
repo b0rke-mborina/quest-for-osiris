@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 28211242}
   - component: {fileID: 28211241}
   - component: {fileID: 28211240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 1091085785}
   - component: {fileID: 1091085784}
   - component: {fileID: 1091085783}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,17 +849,28 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 64
   runSpeed: 8
   sprintSpeed: 12
   crouchSpeed: 4
   airSpeed: 0.1
   slideSpeedIncrease: 2.5
   slideSpeedDecrease: 3
+  wallrunSpeedIncrease: 2
+  wallrunSpeedDecrease: 1.5
   normalGravity: -13
+  wallrunGravity: -1
   jumpHeight: 5
   standHeight: 0
   crouchHeight: 0.5
   maxSlideTimer: 2
+  playerCamera: {fileID: 330585545}
+  specialFOV: 120
+  cameraChangeTime: 20
+  wallrunTilt: 20
+  tilt: 0
 --- !u!1 &1921477788
 GameObject:
   m_ObjectHideFlags: 0
