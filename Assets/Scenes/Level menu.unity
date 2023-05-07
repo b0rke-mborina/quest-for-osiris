@@ -477,9 +477,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1775606412}
         m_TargetAssemblyTypeName: LevelsMenu, Assembly-CSharp
-        m_MethodName: LevelSelect
+        m_MethodName: Level2Select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
