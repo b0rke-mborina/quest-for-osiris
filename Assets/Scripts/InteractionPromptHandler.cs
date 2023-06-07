@@ -18,8 +18,13 @@ public class InteractionPromptHandler : MonoBehaviour
     public bool isInRange;
 
     // interaction variables
+    GameObject interactable;
+    GameObject puzzle;
+
     GameObject leftDoor;
     GameObject rightDoor;
+    bool doorIsOpen;
+
 
     private void Start()
     {
@@ -29,8 +34,12 @@ public class InteractionPromptHandler : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera");
         isInRange = false;
 
-        leftDoor = GameObject.Find("ColumnSquare_MediumLeft");
-        rightDoor = GameObject.Find("ColumnSquare_MediumRight");
+        interactable = this.gameObject;
+        puzzle = interactable.transform.parent.gameObject;
+
+        leftDoor = puzzle.transform.GetChild(2).GetChild(0).gameObject;
+        rightDoor = puzzle.transform.GetChild(2).GetChild(1).gameObject;
+        doorIsOpen = false;
     }
 
     // HANDLE RANGE (OnTriggerEnter, OnTriggerExit)
@@ -76,8 +85,11 @@ public class InteractionPromptHandler : MonoBehaviour
     // handle interaction
     private void Interact()
     {
-        // Debug.Log("Interacted");
-        leftDoor.transform.position = new Vector3(-20f, 0f, 31.9f);
-        rightDoor.transform.position = new Vector3(20f, 0f, 31.9f);
+        if (!doorIsOpen)
+        {
+            leftDoor.transform.localPosition += Vector3.left * 12.24f;
+            rightDoor.transform.localPosition += Vector3.right * 12.24f;
+            doorIsOpen = true;
+        }
     }
 }
