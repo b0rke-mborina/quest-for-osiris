@@ -187,7 +187,6 @@ public class PlayerMovementController : MonoBehaviour
             : isCrouching
                 ? crouchSpeed
                 : runSpeed;
-        forwardDirection = Vector3.zero;
         move.x = input.x != 0 ? move.x + input.x * speed : 0;
         move.z = input.z != 0 ? move.z + input.z * speed : 0;
         move = Vector3.ClampMagnitude(move, speed);
@@ -199,7 +198,7 @@ public class PlayerMovementController : MonoBehaviour
         move.z += input.z * airSpeed;
         if (isWalljumping)
         {
-            move += forwardDirection * airSpeed;
+            move += Vector3.zero * airSpeed;
             walljumpTimer -= 1f * Time.deltaTime;
             if (walljumpTimer <= 0f)
             {
