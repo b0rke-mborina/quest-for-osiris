@@ -62,7 +62,7 @@ public class ChestScript : MonoBehaviour
                     interactPromptText.text = labelText;
 
                     // interaction with LMB
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (Input.GetKey(KeyCode.Mouse0))
                     {
                         Open();
                     }
@@ -71,6 +71,10 @@ public class ChestScript : MonoBehaviour
                 {
                     interactPromptText.text = "";
                 }
+            }
+            else
+            {
+                interactPromptText.text = "";
             }
         }
     }
