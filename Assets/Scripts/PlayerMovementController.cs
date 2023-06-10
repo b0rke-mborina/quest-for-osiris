@@ -153,7 +153,7 @@ public class PlayerMovementController : MonoBehaviour
         input = transform.TransformDirection(input);
         input = Vector3.ClampMagnitude(input, 1f);
 
-        if (Input.GetKeyUp(KeyCode.Space) && numberOfJumpCharges > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && numberOfJumpCharges > 0)
         {
             Jump();
         }
