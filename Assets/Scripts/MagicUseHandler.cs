@@ -39,7 +39,7 @@ public class MagicUseHandler : MonoBehaviour
         }
     }
 
-    public bool getMagicUse()
+    public bool canItUseMagic()
     {
         return canUseMagic;
     }
