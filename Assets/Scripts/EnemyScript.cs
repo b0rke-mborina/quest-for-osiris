@@ -9,11 +9,13 @@ public class EnemyScript : MonoBehaviour
 
     private Collider[] hitColliders;
     private RaycastHit Hit;
-
     public float SightRange;
     public float DetectionRange;
     public Rigidbody rb;
     public GameObject Target;
+    public float Damage;
+    public float KOTime;
+    private bool CanAttack= true;
 
     private bool seePlayer;
     // Start is called before the first frame update
@@ -52,5 +54,20 @@ public class EnemyScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if(collision.collider.tag== "Player") {
+        collision.collider.gameObject.GetComponent<Health>().TakeDamage(Damage);
+        StartCoroutine(AttackDelay(KOTime));
+        }
+    }
+
+    IEnumerator AttackDelay(float Delay) {
+        Speed= 0;
+        CanAttack= false;
+        yield return new WaitForSeconds(Delay);
+        Speed= MaxSpeed;
+        CanAttack= true;
     }
 }
