@@ -2542,6 +2542,8 @@ Transform:
   - {fileID: 1259607740}
   - {fileID: 1274289837}
   - {fileID: 1078295138}
+  - {fileID: 612429640}
+  - {fileID: 1015477066}
   m_Father: {fileID: 1520748087}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16200,7 +16202,7 @@ GameObject:
   - component: {fileID: 612429637}
   - component: {fileID: 612429636}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: PlaneOutsideLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16373,13 +16375,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612429635}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 51.04, y: 56.37, z: 687.05}
-  m_LocalScale: {x: 1.8600894, y: 5.3, z: 1.0953616}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 55.38273, y: 5.409809, z: 728.6207}
+  m_LocalScale: {x: 1.8600894, y: 5.2999997, z: 1.0953616}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 102400812}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &615707094
 GameObject:
@@ -29021,7 +29023,7 @@ GameObject:
   - component: {fileID: 1015477063}
   - component: {fileID: 1015477062}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: PlaneOutsideRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29194,13 +29196,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015477061}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 51.04, y: 56.4, z: 538.48}
-  m_LocalScale: {x: 1.8600894, y: 5.3, z: 1.0953616}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 55.38273, y: 5.4398117, z: 580.0507}
+  m_LocalScale: {x: 1.8600894, y: 5.2999997, z: 1.0953616}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 102400812}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1025965593
 GameObject:
