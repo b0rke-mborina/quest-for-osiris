@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27684
+  m_Name: pb_Mesh69206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 57433259}
   - component: {fileID: 57433258}
   - component: {fileID: 57433261}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Cube
   m_TagString: PlatformMoveable
   m_Icon: {fileID: 0}
@@ -3673,7 +3673,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26900
+  m_Name: pb_Mesh68466
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8566,6 +8566,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1350535211}
+  - component: {fileID: 1350535212}
+  - component: {fileID: 1350535213}
+  - component: {fileID: 1350535214}
   m_Layer: 0
   m_Name: Platform1
   m_TagString: Untagged
@@ -8590,6 +8593,48 @@ Transform:
   m_Father: {fileID: 913511344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1350535212
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350535210}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1350535213
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350535210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 0.3280296, z: 5}
+  m_Center: {x: 0, y: 1.453857, z: 0.08999991}
+--- !u!114 &1350535214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350535210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6d835b6b390bd42b35ed35e0e28d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movedLocalPosition: {x: 6.559999, y: -23.77, z: -28.78}
 --- !u!1 &1369484269
 GameObject:
   m_ObjectHideFlags: 0
@@ -8786,6 +8831,7 @@ MonoBehaviour:
   slideSpeedDecrease: 3
   wallrunSpeedIncrease: 2
   wallrunSpeedDecrease: 1.5
+  isGrounded: 0
   normalGravity: -20
   wallrunGravity: -1
   jumpHeight: 4
@@ -8842,7 +8888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389894616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -160.8, y: 20.49, z: 12.97}
+  m_LocalPosition: {x: -26.7, y: 20.49, z: 44.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9839,7 +9885,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27206
+  m_Name: pb_Mesh68770
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11345,7 +11391,7 @@ GameObject:
   - component: {fileID: 1970677588}
   m_Layer: 7
   m_Name: GroundChecker
-  m_TagString: Untagged
+  m_TagString: GroundChecker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
