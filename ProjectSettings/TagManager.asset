@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - PlatformChangeable
   - InteractiveObject
+  - GroundChecker
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,6 @@ TagManager:
   - Player
   - Interactable
   - Interact
-  - 
-  - 
   - 
   - 
   - 

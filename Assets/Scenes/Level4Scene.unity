@@ -34036,6 +34036,7 @@ MonoBehaviour:
   slideSpeedDecrease: 3
   wallrunSpeedIncrease: 2
   wallrunSpeedDecrease: 1.5
+  isGrounded: 0
   normalGravity: -20
   wallrunGravity: -1
   jumpHeight: 4
@@ -34092,7 +34093,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154117761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 54.43, z: -21.53}
+  m_LocalPosition: {x: -0.09, y: 54.6, z: -21.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

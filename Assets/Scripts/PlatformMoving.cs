@@ -14,32 +14,42 @@ public class PlatformMoving : MonoBehaviour
     private float startTime;
     private float journeyLength;
     private float speed;
-    // private float distCovered;
+
+    PlayerMovementController playerMovementController;
     bool isOnPlatform;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+        playerMovementController = player.GetComponent<PlayerMovementController>();
+
         platform = this.gameObject;
         originalLocalPosition = platform.transform.localPosition;
         lastPosition = "original";
 
         startTime = Time.time;
-        journeyLength = 3.0f; // Vector3.Distance(originalLocalPosition, movedLocalPosition);
+        journeyLength = 3.0f;
         speed = 1.0f;
-        // distCovered = 0f;
         isOnPlatform = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") isOnPlatform = true;
+        if (other.gameObject.tag == "GroundChecker")
+        {
+            isOnPlatform = true;
+            // player.transform.parent = transform;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player") isOnPlatform = false;
+        if (other.gameObject.tag == "GroundChecker")
+        {
+            isOnPlatform = false;
+            // player.transform.parent = null;
+        }
     }
 
     // Update is called once per frame
@@ -48,5 +58,13 @@ public class PlatformMoving : MonoBehaviour
         float distCovered = Mathf.PingPong(Time.time - startTime, journeyLength / speed);
         float fractionOfJourney = distCovered / journeyLength;
         transform.localPosition = Vector3.Lerp(originalLocalPosition, movedLocalPosition, fractionOfJourney);
+
+        // Debug.Log(isOnPlatform);
+
+        if (isOnPlatform && playerMovementController.isGrounded)
+        {
+            // Debug.Log(player.transform.localPosition);
+            // player.transform.localPosition = Vector3.Lerp(originalLocalPosition, movedLocalPosition, fractionOfJourney);
+        }
     }
 }
