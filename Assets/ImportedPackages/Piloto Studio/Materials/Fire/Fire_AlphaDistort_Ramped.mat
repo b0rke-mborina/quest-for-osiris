@@ -2,22 +2,25 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Fire_AlphaDistort_Ramped
-  m_Shader: {fileID: 4800000, guid: d985403ea514e7c46bf7c2fab31b9d95, type: 3}
-  m_ShaderKeywords: _DOUBLESIDED_ON _SURFACE_TYPE_TRANSPARENT _USEALPHAOVERRIDE_ON
-    _USERAMP_ON
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _DOUBLESIDED_ON
+  - _SURFACE_TYPE_TRANSPARENT
+  - _USEALPHAOVERRIDE_ON
+  - _USERAMP_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
-    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
   - DistortionVectors
@@ -45,12 +48,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: 430dca26c2c945b28537f0c49eb27163, type: 3}
         m_Scale: {x: 0.5, y: 0.5}
         m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 10
     - _AlphaMul: 1.5
     - _AlphaSrcBlend: 1
+    - _BandingBias: 2
     - _BlendMode: 0
     - _BumpScale: 1
     - _ClampUV: 0
@@ -64,6 +73,7 @@ Material:
     - _Cutoff: 0.5
     - _Desaturate: 0
     - _DetailNormalMapScale: 1
+    - _Dimming: 0.75
     - _DisableErosion: 0
     - _Dissolve: 1
     - _DissolveFactor: 0
@@ -106,6 +116,8 @@ Material:
     - _ReceivesSSR: 0
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
+    - _RimOffset: 0.24
+    - _RimShadow: 0
     - _Scrolling: 0
     - _SecondTexClampUV: 0
     - _SecondTexGlobalUV: 0
@@ -174,6 +186,8 @@ Material:
     - _MainTextureChannel: {r: 1, g: 1, b: 1, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
     - _MidColor: {r: 1, g: 0.26896533, b: 0, a: 0}
+    - _RimColor: {r: 0, g: 0.5549643, b: 1, a: 0}
+    - _RimFalloff: {r: 0, g: 0, b: 0, a: 0}
     - _ScrollingSpeed: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _SecondTexSpeed_NoiseForce: {r: 0.05, g: 0.05, b: 0.5, a: 0.5}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
