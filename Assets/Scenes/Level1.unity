@@ -5966,7 +5966,7 @@ Terrain:
   m_GameObject: {fileID: 886047575}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 82d22ef2f434722458321371343725bc, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -8966,11 +8966,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfe9405cef691a84bb649ca2d5fbaed2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 322
+      value: 321.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfe9405cef691a84bb649ca2d5fbaed2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfe9405cef691a84bb649ca2d5fbaed2, type: 3}
       propertyPath: m_LocalPosition.z
