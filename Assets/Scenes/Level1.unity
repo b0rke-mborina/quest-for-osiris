@@ -5940,7 +5940,7 @@ GameObject:
   - component: {fileID: 886047577}
   - component: {fileID: 886047576}
   m_Layer: 3
-  m_Name: Terrain
+  m_Name: Terrain_sand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
