@@ -250,6 +250,13 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
         SetGreyColor(tankBottomPart2Renderer);
         SetGreyColor(tankBottomPart1Renderer);
         isInOriginalState = true;
+
+        hasWaterPassedBarrier1 = false;
+        hasWaterPassedBarrierRight1 = false;
+        hasWaterRightReachedTankBottom = false;
+        hasWaterPassedBarrierLeft1 = false;
+        hasWaterGoneLeft = false;
+        hasWaterLeftReachedTankBottom = false;
     }
 
     private void MoveWaterBelowBarrier1()
@@ -331,7 +338,7 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
 
         hasWaterPassedBarrierLeft1 = true;
 
-        if (hasWaterPassedBarrier1 && barrierLeft2.transform.localPosition.Equals(barrierLeft2OriginalPosition)) Invoke("MakeWaterGoLeft", 0.5f);
+        if (hasWaterPassedBarrier1) Invoke("UpdateWaterBelowBarrierLeft1", 0.5f);
     }
     
     private void UpdateWaterBelowBarrierLeft1()
@@ -342,10 +349,13 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
         SetLightBlueColor(tubeLeftPart4Renderer);
         SetLightBlueColor(tubeLeftPart5Renderer);
         SetLightBlueColor(tubeLeftPart6Renderer);
+
+        if (hasWaterPassedBarrier1 && hasWaterPassedBarrierLeft1 && barrierLeft2.transform.localPosition.Equals(barrierLeft2OriginalPosition)) Invoke("MakeWaterGoLeft", 0.5f);
     }
 
     private void MakeWaterGoLeft()
     {
+        SetGreyColor(tubeLeftPart4Renderer);
         SetLightBlueColor(tubeLeftLeftPart1Renderer);
         SetLightBlueColor(tubeLeftLeftPart2Renderer);
         SetLightBlueColor(tubeLeftLeftPart3Renderer);
@@ -398,7 +408,7 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
     {
         Vector3 originalPosition = Vector3.zero;
         Vector3 movedPosition = Vector3.zero;
-        bool moveWaterMore = false;
+        bool extendBarrierMoveCooldown = false;
 
         switch (barrier.name)
         {
@@ -417,13 +427,13 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
                 movedPosition = barrierRight2MovedPosition;
                 if (hasWaterPassedBarrierRight1 && !hasWaterRightReachedTankBottom && barrier.transform.localPosition.Equals(barrierRight2OriginalPosition))
                 {
-                    MoveWaterBelowBarrierRight2();
-                    moveWaterMore = true;
+                    Invoke("MoveWaterBelowBarrierRight2", 0.5f);
                 }
                 break;
             case "BarrierLeft1":
                 originalPosition = barrierLeft1OriginalPosition;
                 movedPosition = barrierLeft1MovedPosition;
+                extendBarrierMoveCooldown = true;
                 if (hasWaterPassedBarrier1 && !hasWaterPassedBarrierLeft1 && barrier.transform.localPosition.Equals(barrierLeft1OriginalPosition)) Invoke("MoveWaterBelowBarrierLeft1", 0.5f);
                 if (hasWaterPassedBarrier1 && hasWaterPassedBarrierLeft1 && !hasWaterLeftReachedTankBottom && !hasWaterGoneLeft && barrier.transform.localPosition.Equals(barrierLeft1MovedPosition))
                 {
@@ -449,8 +459,8 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
         }
 
         canMoveBarriers = false;
-        Invoke("EnableBarrierMoving", 0.5f);
-        if (moveWaterMore) Invoke("MoveWaterRightTankBottom", 0.5f);
+        if (extendBarrierMoveCooldown) Invoke("EnableBarrierMoving", 1f);
+        else Invoke("EnableBarrierMoving", 0.5f);
     }
 
     private void Update()
