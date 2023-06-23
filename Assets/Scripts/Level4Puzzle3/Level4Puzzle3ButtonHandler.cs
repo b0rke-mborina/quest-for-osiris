@@ -55,7 +55,7 @@ public class Level4Puzzle3ButtonHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && tubeSystemHandler.isInOriginalState && isInRangeOfButton)
+        if (other.gameObject.name == "Player" && isInRangeOfButton && !tubeSystemHandler.isInOriginalState && !tubeSystemHandler.isTubeSystemCompleted)
         {
             RaycastHit hit;
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, Mathf.Infinity))
