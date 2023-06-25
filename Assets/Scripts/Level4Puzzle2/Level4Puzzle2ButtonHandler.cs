@@ -67,7 +67,7 @@ public class Level4Puzzle2ButtonHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && mechanismHandler.isMechanismCompleted && isInRangeOfButton)
+        if (other.gameObject.name == "Player" && mechanismHandler.isMechanismCompleted && isInRangeOfButton && !doorIsOpen)
         {
             RaycastHit hit;
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, Mathf.Infinity))
@@ -91,6 +91,10 @@ public class Level4Puzzle2ButtonHandler : MonoBehaviour
             {
                 interactPromptText.text = "";
             }
+        }
+        else
+        {
+            interactPromptText.text = "";
         }
     }
 

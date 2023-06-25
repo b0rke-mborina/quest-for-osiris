@@ -215,6 +215,10 @@ public class Level4Puzzle3TubeSystemHandler : MonoBehaviour
                 interactPromptText.text = "";
             }
         }
+        else
+        {
+            interactPromptText.text = "";
+        }
     }
 
     public void SetToOriginalState()

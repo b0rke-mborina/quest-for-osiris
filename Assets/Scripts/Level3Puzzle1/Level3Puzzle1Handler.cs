@@ -121,7 +121,7 @@ public class Level3Puzzle1Handler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && isInRange && canSelect)
+        if (other.gameObject.name == "Player" && isInRange && canSelect && numberOfSelectedItems != 3)
         {
             RaycastHit hit;
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, Mathf.Infinity))
@@ -317,6 +317,10 @@ public class Level3Puzzle1Handler : MonoBehaviour
             {
                 interactPromptText.text = "";
             }
+        }
+        else
+        {
+            interactPromptText.text = "";
         }
     }
 
