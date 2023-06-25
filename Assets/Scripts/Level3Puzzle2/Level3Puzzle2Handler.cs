@@ -223,6 +223,10 @@ public class Level3Puzzle2Handler : MonoBehaviour
                 interactPromptText.text = "";
             }
         }
+        else
+        {
+            interactPromptText.text = "";
+        }
     }
 
     // Update is called once per frame

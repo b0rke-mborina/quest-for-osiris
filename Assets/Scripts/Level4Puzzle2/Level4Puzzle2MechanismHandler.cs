@@ -145,6 +145,10 @@ public class Level4Puzzle2MechanismHandler : MonoBehaviour
                 interactPromptText.text = "";
             }
         }
+        else
+        {
+            interactPromptText.text = "";
+        }
     }
 
     // handle interaction

@@ -82,6 +82,10 @@ public class Level4Puzzle3ButtonHandler : MonoBehaviour
                 interactPromptText.text = "";
             }
         }
+        else
+        {
+            interactPromptText.text = "";
+        }
     }
 
     private void MoveButtonToOriginalPosition()

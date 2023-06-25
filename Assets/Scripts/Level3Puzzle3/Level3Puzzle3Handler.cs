@@ -98,7 +98,7 @@ public class Level3Puzzle3Handler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && isInRange)
+        if (other.gameObject.name == "Player" && isInRange && numberOfSelectedItems != 3)
         {
             // detect if player is looking at the interactable object with a Raycast
             RaycastHit hit;
@@ -180,6 +180,10 @@ public class Level3Puzzle3Handler : MonoBehaviour
             {
                 interactPromptText.text = "";
             }
+        }
+        else
+        {
+            interactPromptText.text = "";
         }
     }
 
