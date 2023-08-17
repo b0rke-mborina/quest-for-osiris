@@ -11,6 +11,16 @@ TagManager:
   - PlatformChangeable
   - InteractiveObject
   - GroundChecker
+  - RightSpot
+  - Cube1
+  - Cube2
+  - Cube3
+  - Cube4
+  - Cube5
+  - Chest02Trigger
+  - Key
+  - Key3
+  - Key2
   layers:
   - Default
   - TransparentFX
