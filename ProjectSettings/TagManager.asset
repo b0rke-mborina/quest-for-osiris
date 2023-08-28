@@ -21,6 +21,8 @@ TagManager:
   - Key
   - Key3
   - Key2
+  - activateCannon
+  - LightSaber
   layers:
   - Default
   - TransparentFX
