@@ -1,0 +1,35 @@
+# Blender 3.4.1 MTL File: '1.blend'
+# www.blender.org
+
+newmtl Rope
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:/ZLECENIA/Modele3D/DOTS TEXTURES-20230208T112833Z-001/DOTS TEXTURES/rope/T_rope_bc.png
+map_Ns D:/ZLECENIA/Modele3D/DOTS TEXTURES-20230208T112833Z-001/DOTS TEXTURES/rope/T_rope_r.png
+map_Bump -bm 1.000000 D:/ZLECENIA/Modele3D/DOTS TEXTURES-20230208T112833Z-001/DOTS TEXTURES/rope/T_rope_n.png
+
+newmtl Stone
+Ka 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:/ZLECENIA/Modele3D/PACZKI/EGYPT/Textures/T_concrete_egypt_BaseColor.png
+map_Ks D:/ZLECENIA/Modele3D/PACZKI/EGYPT/Textures/T_concrete_egypt_bc_spec.png
+map_Ns D:/ZLECENIA/Modele3D/PACZKI/EGYPT/Textures/T_concrete_Roughness.png
+map_Bump -bm 8.000000 D:/ZLECENIA/Modele3D/PACZKI/EGYPT/Textures/T_concrete_NormalMap.png
+
+newmtl Wood
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:/ZLECENIA/Modele3D/PACZKI/EGYPT/Textures/Wood/T_wood_raw_BaseColor.png
+map_Bump -bm 1.000000 D:/ZLECENIA/Modele3D/PACZKI/EGYPT/Textures/Wood/T_wood_raw_NormalMap_strong.png
