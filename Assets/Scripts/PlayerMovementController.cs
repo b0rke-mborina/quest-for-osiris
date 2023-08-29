@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    private Rigidbody rb;
-    CharacterController cc;
     // controller and variables for checking
     CharacterController controller;
     public Transform groundChecker;
@@ -401,10 +399,5 @@ public class PlayerMovementController : MonoBehaviour
             if (onLeftWall) tilt = Mathf.Lerp(tilt, -wallrunTilt, cameraChangeTime * Time.deltaTime);
         }
         else tilt = Mathf.Lerp(tilt, 0f, cameraChangeTime * Time.deltaTime);
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if(other.tag== "Player")
-            cc.Move(rb.velocity * Time.deltaTime);
     }
 }
