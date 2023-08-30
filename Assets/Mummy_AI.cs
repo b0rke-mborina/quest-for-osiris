@@ -11,6 +11,8 @@ public class Mummy_AI : MonoBehaviour
 
     public GameObject _Target;
 
+    public GameObject _TargetLook;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Mummy_AI : MonoBehaviour
     void Update()
     {
         _agent.SetDestination(_Target.transform.position);
+        
 
         //Animation
         if (_agent.velocity.x == 0 && _agent.velocity.y == 0 && _agent.velocity.z == 0)
@@ -36,5 +39,10 @@ public class Mummy_AI : MonoBehaviour
             _animator.SetBool("walk", true);
         }
         
+        _TargetLook.transform.LookAt(_Target.transform);
+
+        transform.rotation = Quaternion.Euler(0f, _TargetLook.transform.eulerAngles.y, 0f);
+        
     }
+
 }
