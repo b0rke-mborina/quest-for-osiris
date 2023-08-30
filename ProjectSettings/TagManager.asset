@@ -10,6 +10,8 @@ TagManager:
   - Platform
   - PlatformChangeable
   - InteractiveObject
+  - Undefined
+  - DoorButton
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,6 @@ TagManager:
   - Player
   - Interactable
   - Interact
-  - 
-  - 
   - 
   - 
   - 
