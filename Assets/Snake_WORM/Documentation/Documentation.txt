@@ -1,0 +1,50 @@
+	
+- - - - - - - - - - - - - - - - - - - - - Snake_Worm (Low_poly)- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+This pack contains 3d low poly Model and Animation of a Scary Snakelike Worm.
+
+Technical Details:-
+		- Model(s) : Snake_Worm(high poly & low poly meshes)
+		- Vertex count : 778(High), 196(Low)
+		- Tris count :  1552(High), 388(Low)
+		- Unwrapped : Yes
+		- Texture Variations : 7 (PBR-HQ)
+		- Animations : 11 (Idle, Run(x4), Walk(x2), tail, fly, attack, anim_01)
+		- Used Material(s) : Unity Standard Material
+		- Texture maps : Albedo/Base Color, Normal, Metalic Smoothness
+		- Texture Size : 2048(.png)
+		
+
+Features:-
+	- Lowpoly & High poly meshes included
+	- Smooth Animations(Worm, snakelike.etc)
+	- Colliders attached
+	- PBR HQ Textures
+	- Include many color variations
+	- Mobile, AR supported
+
+Folder details:-
+
+	Materials : Where the materials for the model located.
+	
+	Meshes : Contain FBX format of the 3d model.
+	
+	Textures : Contains Textures, that are in (.PNG) file format
+	
+	(Other folders - Prefabs, Scenes, Animations)
+
+
+
+How to use:-
+	
+	Simply drag and drop the prefab to your scene and use it.
+	(Prefab(s) located under 
+	Asset >  Snake_Worm > Prefabs).
+
+..................................................................................
+
+About Me : "SR Studios Kerala", Indie Game developer & 3D Artist from Alappuzha, Kerala, India
+
+Contact : srstudioskerala@gmail.com
+
+................Thank you for downloading this package................................
