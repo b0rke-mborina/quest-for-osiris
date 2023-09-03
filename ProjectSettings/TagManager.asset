@@ -11,7 +11,6 @@ TagManager:
   - PlatformChangeable
   - InteractiveObject
   - GroundChecker
-  - WayPoints
   layers:
   - Default
   - TransparentFX
