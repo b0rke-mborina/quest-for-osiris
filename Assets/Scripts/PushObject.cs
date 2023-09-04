@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PushObject : MonoBehaviour
@@ -18,14 +20,6 @@ public class PushObject : MonoBehaviour
             rigidbody.freezeRotation = true;
 
             rigidbody.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
-
-            // Check the spot combination after pushing a cube
-            GameObject spot = GameObject.Find("Spot");
-            if (spot != null)
-            {
-                PlaceCubeObject placeCubeObject = spot.GetComponent<PlaceCubeObject>();
-                placeCubeObject.CheckCombination();
-            }
         }
     }
 }

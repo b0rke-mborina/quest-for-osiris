@@ -6,7 +6,7 @@ public class AlphaChange : MonoBehaviour
 {
     private Renderer model;
 
-    void Awake()
+    void Start()
     {
         model = GetComponent<Renderer>();
     }
