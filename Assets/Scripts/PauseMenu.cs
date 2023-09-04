@@ -4,11 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public static bool GameIsPaused = false;
-    PlayerCameraController camController;
 
     private bool cursorWasLocked = true;
 
@@ -31,9 +31,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         cursorWasLocked = false;
-        camController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCameraController>();  
-        camController.isPaused = true;
-
     }
 
     public void Resume()
@@ -41,9 +38,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
-        camController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCameraController>();
-        camController.isPaused = false;
-        if (!cursorWasLocked)
+        if (cursorWasLocked)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -54,10 +49,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main menu");
-    }
-    public void PlayAgainButton() 
-    {
-        SceneManager.LoadScene("Level1");
     }
 
     private void OnEnable()
