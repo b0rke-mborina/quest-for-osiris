@@ -47,7 +47,12 @@ public class PlayerPickUp : MonoBehaviour
 
     void PickupObject(GameObject pickObj)
     {
-        if(pickObj.GetComponent<Rigidbody>())
+        if (pickObj.CompareTag("Chest"))
+        {
+            return;
+        }
+
+        if (pickObj.GetComponent<Rigidbody>())
         {
             holdObjRB = pickObj.GetComponent<Rigidbody>();
             holdObjRB.useGravity = false;
