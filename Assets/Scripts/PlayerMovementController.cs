@@ -36,7 +36,7 @@ public class PlayerMovementController : MonoBehaviour
     int numberOfJumpCharges;
     
     // movement states
-	bool isGrounded;
+	public bool isGrounded;
     bool isCrouching;
     bool isSprinting;
 	bool isSliding;
