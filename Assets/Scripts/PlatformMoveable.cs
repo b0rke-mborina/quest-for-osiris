@@ -64,7 +64,6 @@ public class PlatformMoveable : MonoBehaviour
                     if (Input.GetKey(KeyCode.F))
                     {
                         HandlePlatformMovement();
-                        useMagicText.text = "";
                         magicHandler.setMagicUse(true);
                     }
                 }
