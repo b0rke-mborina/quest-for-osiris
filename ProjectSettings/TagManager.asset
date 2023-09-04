@@ -10,19 +10,10 @@ TagManager:
   - Platform
   - PlatformChangeable
   - InteractiveObject
-  - GroundChecker
-  - RightSpot
-  - Cube1
-  - Cube2
-  - Cube3
-  - Cube4
-  - Cube5
-  - Chest02Trigger
-  - Key
-  - Key3
-  - Key2
-  - activateCannon
-  - LightSaber
+  - DoorButton
+  - SpikeButton
+  - Enemy
+  - DoorButton2
   layers:
   - Default
   - TransparentFX
