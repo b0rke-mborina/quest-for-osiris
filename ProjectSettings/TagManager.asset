@@ -23,10 +23,6 @@ TagManager:
   - Key2
   - activateCannon
   - LightSaber
-  - DoorButton
-  - SpikeButton
-  - Enemy
-  - DoorButton2
   layers:
   - Default
   - TransparentFX
