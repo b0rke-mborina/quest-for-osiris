@@ -9,7 +9,7 @@ public class MummyAI : MonoBehaviour
     Animator _animator;
 
     public GameObject _Target;
-
+    public float chaseDistance = 30.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +23,27 @@ public class MummyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _agent.SetDestination(_Target.transform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, _Target.transform.position);
 
-
-        //Animation
-        if (_agent.velocity.x == 0 && _agent.velocity.y == 0 && _agent.velocity.z == 0)
+        if (distanceToPlayer <= chaseDistance)
         {
-            _animator.SetBool("walk", false);
+            _agent.SetDestination(_Target.transform.position);
+
+            // Animation
+            if (_agent.velocity.sqrMagnitude <= 0.1f)
+            {
+                _animator.SetBool("walk", false);
+            }
+            else
+            {
+                _animator.SetBool("walk", true);
+            }
         }
         else
         {
-            _animator.SetBool("walk", true);
+            // Stop chasing if player is out of range
+            _agent.ResetPath();
+            _animator.SetBool("walk", false);
         }
-        
     }
 }

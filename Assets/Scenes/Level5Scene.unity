@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 290918196}
+  chaseDistance: 30
 --- !u!195 &19837
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3689,6 +3690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 290918196}
+  chaseDistance: 30
 --- !u!195 &220768726
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5036,7 +5038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290918196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.1, y: 6.7, z: 87.7}
+  m_LocalPosition: {x: 89.11, y: 6.7, z: 27.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11456,6 +11458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 290918196}
+  chaseDistance: 30
 --- !u!195 &804496370
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -23865,6 +23868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 290918196}
+  chaseDistance: 30
 --- !u!195 &1472560584
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -26189,6 +26193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 290918196}
+  chaseDistance: 30
 --- !u!195 &1582119128
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -29545,6 +29550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 290918196}
+  chaseDistance: 30
 --- !u!195 &1813699714
 NavMeshAgent:
   m_ObjectHideFlags: 0
