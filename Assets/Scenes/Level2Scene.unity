@@ -4263,6 +4263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 1085134328}
+  chaseDistance: 30
 --- !u!195 &386498123
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5876,6 +5877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 1085134328}
+  chaseDistance: 30
 --- !u!195 &495038138
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7086,6 +7088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 1085134328}
+  chaseDistance: 30
 --- !u!195 &601689284
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7431,7 +7434,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648608472}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9237,6 +9240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 1085134328}
+  chaseDistance: 30
 --- !u!195 &816000903
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17422,6 +17426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 1085134328}
+  chaseDistance: 30
 --- !u!195 &1440675248
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -24021,6 +24026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Target: {fileID: 1085134328}
+  chaseDistance: 30
 --- !u!195 &1978897996
 NavMeshAgent:
   m_ObjectHideFlags: 0
