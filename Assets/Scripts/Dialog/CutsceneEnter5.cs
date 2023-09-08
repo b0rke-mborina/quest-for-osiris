@@ -12,6 +12,7 @@ public class CutsceneEnter5 : MonoBehaviour
     public GameObject dialog2;
     public GameObject dialog3;
     public GameObject isis;
+    public GameObject map5;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,12 +24,13 @@ public class CutsceneEnter5 : MonoBehaviour
         dialog2.SetActive(true);
         dialog3.SetActive(true);
         isis.SetActive(true);
+        map5.SetActive(true);
         StartCoroutine(FinishCut());
     }
 
     IEnumerator FinishCut()
     {
-        yield return new WaitForSeconds(24);
+        yield return new WaitForSeconds(27);
         thePlayer.SetActive(true);
         cutscene.SetActive(false);
         cutsceneCam.SetActive(false);
@@ -36,6 +38,7 @@ public class CutsceneEnter5 : MonoBehaviour
         dialog2.SetActive(false);
         dialog3.SetActive(false);
         isis.SetActive(false);
+        map5.SetActive(false);
         SceneManager.LoadScene("Level5Scene");
     }
     // Start is called before the first frame update
