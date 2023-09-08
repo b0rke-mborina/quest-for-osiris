@@ -46,4 +46,10 @@ public class MummyAI : MonoBehaviour
             _animator.SetBool("walk", false);
         }
     }
+
+    // Handle mouse click to destroy the enemy
+    void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
 }
