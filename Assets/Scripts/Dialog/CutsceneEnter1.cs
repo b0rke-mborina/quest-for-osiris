@@ -9,6 +9,7 @@ public class CutsceneEnter1 : MonoBehaviour
     public GameObject cutsceneCam;
     public GameObject cutscene;
     public GameObject dialog1;
+    public GameObject map1;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,14 +18,16 @@ public class CutsceneEnter1 : MonoBehaviour
         thePlayer.SetActive(false);
         cutscene.SetActive(true);
         dialog1 .SetActive(true);
+        map1.SetActive(true);
         StartCoroutine(FinishCut());
     }
 
     IEnumerator FinishCut()
     {
-        yield return new WaitForSeconds(38);
+        yield return new WaitForSeconds(43);
         thePlayer.SetActive(true);
         cutscene.SetActive(false);
+        map1 .SetActive(false);
         cutsceneCam.SetActive(false);
         dialog1.SetActive(false);
     }

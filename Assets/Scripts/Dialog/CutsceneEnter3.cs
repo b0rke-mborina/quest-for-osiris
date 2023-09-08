@@ -14,6 +14,7 @@ public class CutsceneEnter3 : MonoBehaviour
     public GameObject dialog4;
     public GameObject anubis;
     public GameObject isis;
+    public GameObject map3;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,12 +28,13 @@ public class CutsceneEnter3 : MonoBehaviour
         dialog4.SetActive(true);
         anubis.SetActive(true);
         isis.SetActive(true);
+        map3.SetActive(true);
         StartCoroutine(FinishCut());
     }
 
     IEnumerator FinishCut()
     {
-        yield return new WaitForSeconds(35);
+        yield return new WaitForSeconds(38);
         thePlayer.SetActive(true);
         cutscene.SetActive(false);
         cutsceneCam.SetActive(false);
@@ -42,6 +44,7 @@ public class CutsceneEnter3 : MonoBehaviour
         dialog4.SetActive(false);
         anubis.SetActive(false);
         isis.SetActive(false);
+        map3.SetActive(false);
         SceneManager.LoadScene("Level3Scene");
     }
     // Start is called before the first frame update
